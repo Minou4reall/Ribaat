@@ -13,7 +13,7 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div dir="rtl">
+    <div dir="rtl" className="relative">
       {/* زر فتح وإغلاق */}
       <button
         onClick={() => setOpen(!open)}

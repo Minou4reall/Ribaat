@@ -2,15 +2,18 @@ import "./App.css";
 import "./index.css";
 import "flowbite";
 import Sidebar from "./components/layout/sidebar/Sidebar";
+import AddUserPopup from "./components/ui-component/addUserPopup";
 
 function App() {
   return (
     <>
-      <div className="main-container flex" dir="rtl">
-        <Sidebar />
+      <div className=" flex p-10 bg-gray-700" dir="rtl">
+        {/* <div><Sidebar /></div> */}
         
-        <div className="content">
-          <h1 className=" m-4 text-2xl font-bold text-black">لوحة التحكم</h1>
+
+        <div className="content relative h-screen w-full ">
+          <AddUserPopup />
+          
         </div>
       </div>
     </>
