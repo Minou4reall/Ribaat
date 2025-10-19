@@ -7,7 +7,7 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div dir="rtl">
+    <div dir="rtl" className="relative">
       {/* زر فتح وإغلاق */}
       <button
         onClick={() => setOpen(!open)}
@@ -30,14 +30,14 @@ export default function Sidebar() {
 
       {/* الـ Sidebar نفسه */}
       <aside
-        className={`fixed top-0 right-0 z-40 w-64 h-screen bg-[#101828] shadow-md transition-transform duration-300 ${
+        className={` top-0 right-0 z-40 w-44 h-screen bg-[#091b3f] shadow-md transition-transform duration-300 ${
           open ? "translate-x-0" : "translate-x-full"
         } sm:translate-x-0`}
       >
         <div className="h-full px-4 py-6 overflow-y-auto">
           <h2 className="text-xl font-bold mb-6 text-white">لوحة التحكم</h2>
 
-          <ul className="space-y-2">
+          <ul className="space-y-2 text-[14px]">
             <SidebarItem icon={<HiChartPie />} label="الرئيسية" />
             <SidebarCollapse icon={<PiStudentDuotone />} label="الطلبة">
               <SidebarSubItem label="معلومات الطلبة" />
@@ -49,7 +49,7 @@ export default function Sidebar() {
             </SidebarCollapse>
             <SidebarItem icon={<HiUser />} label="المستخدمون" />
             <SidebarItem icon={<HiTable />} label="التقارير" />
-            <SidebarItem icon={<RiLogoutBoxRLine />} label="تسجيل الخروج" />
+            <SidebarItem icon={<HiArrowSmRight />} label="تسجيل الخروج" />
           </ul>
         </div>
       </aside>

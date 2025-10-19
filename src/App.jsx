@@ -2,17 +2,18 @@ import "./App.css";
 import "./index.css";
 import "flowbite";
 import Sidebar from "./components/layout/sidebar/Sidebar";
-import AddUserPopup from "./components/ui-component/addUserPopup";
+import AddUserPopup from "./components/ui-component/AddUserPopup";
+import UsersManagement from "./pages/usersManagment";
 
 function App() {
   return (
     <>
-      <div className=" flex p-10 bg-gray-700" dir="rtl">
-        {/* <div><Sidebar /></div> */}
-        
+      <div className=" flex  bg-gray-50" dir="rtl">
 
-        <div className="content relative h-screen w-full ">
-          <AddUserPopup />
+        <Sidebar />
+
+        <div className="content relative h-screen flex-1 overflow-y-auto ">
+          <UsersManagement/>
           
         </div>
       </div>

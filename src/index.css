@@ -5,3 +5,14 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap&subset=arabic');
 
+.floating-input::placeholder {
+  opacity: 0;
+  transition: opacity 50ms ease; /* مدة الانتقال عند الإخفاء/الإظهار */
+}
+
+/* عند التركيز والحقل لا يزال فارغًا (placeholder-shown) نعرض placeholder بعد تأخير
+   التأخير يجعل اللايبل يترفع أولاً ثم يظهر الـ placeholder */
+.floating-input:focus:placeholder-shown::placeholder {
+  opacity: 1;
+  transition-delay: 50ms; /* عدّل القيمة لتزامن أفضل مع حركة اللايبل */
+}

@@ -13,6 +13,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+         tajawal: ['Tajawal', 'sans-serif'],
         cairo: ["Cairo", "sans-serif"],
         kufi: ['"Noto Kufi Arabic"', "sans-serif"],
       },
