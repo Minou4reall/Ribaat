@@ -7,7 +7,7 @@ import {
   HiPhotograph,
   HiBriefcase,
 } from "react-icons/hi";
-import { RiProfileFill } from "react-icons/ri";
+
 import { BiShieldQuarter } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { BsPersonVcardFill } from "react-icons/bs";
