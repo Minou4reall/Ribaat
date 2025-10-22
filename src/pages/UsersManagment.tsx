@@ -7,11 +7,12 @@ import { PiUsersThreeFill } from "react-icons/pi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdOutlineEdit } from "react-icons/md";
 import { FaEye } from "react-icons/fa6";
-import face1 from "../assets/face-1.jpg";
-import face2 from "../assets/face-2.jpg";
+import face4 from "../assets/face-4.jpg";
+import face2 from "../assets/face-2.jpeg";
 import face3 from "../assets/face-3.jpg";
 interface User {
   id: number;
+  avatar: string;
   fullName: string;
   username: string;
   role: string;
@@ -25,6 +26,7 @@ export default function UsersManagement() {
   const [users] = useState<User[]>([
     {
       id: 1,
+      avatar: face4,
       fullName: "منصور الصادق الأمين",
       username: "admin",
       role: "مسؤول",
@@ -35,6 +37,7 @@ export default function UsersManagement() {
     },
     {
       id: 2,
+      avatar: face2,
       fullName: "المحاسب",
       username: "financial",
       role: "المحاسب",
@@ -45,6 +48,7 @@ export default function UsersManagement() {
     },
     {
       id: 3,
+      avatar: face3,
       fullName: "المسير",
       username: "manager",
       role: "مسير",
@@ -143,7 +147,7 @@ export default function UsersManagement() {
           <thead className="bg-white">
             <tr className="grid grid-cols-6 text-center">
               <th className="px-4 py-3 text-sm font-medium text-gray-500">
-               الصورة الشخصية
+                الصورة الشخصية
               </th>
               <th className="px-4 py-3 text-sm font-medium text-gray-500">
                 الاسم الكامل
@@ -157,7 +161,7 @@ export default function UsersManagement() {
               <th className="px-4 py-3 text-sm font-medium text-gray-500">
                 آخر دخول
               </th>
-              
+
               <th className="px-4 py-3 text-sm font-medium text-gray-500">
                 الإجراءات
               </th>
@@ -170,7 +174,13 @@ export default function UsersManagement() {
                 key={user.id}
                 className="grid grid-cols-6 items-center text-center hover:bg-gray-50 transition"
               >
-                <td className="py-3 text-sm">{user.createdAt}</td>
+                <td className="py-2 text-sm flex justify-center">
+                  <img
+                    src={user.avatar}
+                    alt={user.fullName}
+                    className="w-12 h-12 rounded-full object-cover mx-auto"
+                  />
+                </td>
                 <td className="flex py-3 px-3 font-medium text-gray-900">
                   {user.fullName}
                 </td>
@@ -185,7 +195,7 @@ export default function UsersManagement() {
                   </Badge>
                 </td>
                 <td className="py-3 text-sm ">{user.lastLogin}</td>
-                
+
                 <td className="py-3">
                   <div className="flex items-center justify-center gap-2">
                     <div className="bg-red-100 font-bold  text-red-500 hover:bg-red-200 text-md px-1 py-1 flex items-center rounded-sm cursor-pointer transition duration-75">
