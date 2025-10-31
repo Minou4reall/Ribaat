@@ -20,7 +20,7 @@ import { FaTableCellsRowLock } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
 import { HiUserAdd } from "react-icons/hi";
 import { IoCloseSharp } from "react-icons/io5";
-function AddUserPopup() {
+function AddUserPopup({ onClose }: { onClose: () => void }) {
   const dateRef = useRef<HTMLInputElement | null>(null);
   const [hasJob, setHasJob] = useState(false);
   const [nameValue, setNameValue] = useState("");
@@ -80,7 +80,7 @@ function AddUserPopup() {
           <HiUserAdd className=" text-green-500 text-2xl " />
           إضافة مستخدم جديد
         </div>
-        <button className=" text-gray-700 hover:text-red-500">
+        <button onClick={onClose} className=" text-gray-700 hover:text-red-500">
           <IoCloseSharp className="text-xl cursor-pointer" />
         </button>
       </div>

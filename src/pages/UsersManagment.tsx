@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import AddUserPopup from "../components/ui-component/AddUserPopup";
 import { Badge, Dropdown } from "flowbite-react";
 import { HiOutlinePencil, HiOutlineDotsVertical } from "react-icons/hi";
 import { HiUserAdd } from "react-icons/hi";
@@ -62,7 +63,20 @@ export default function UsersManagement() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>(roles[0]);
   const ref = useRef<HTMLDivElement | null>(null);
+  // POPUP
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+  const [showPopup, setShowPopup] = useState(false); // ⬅️ للتحكم بالأنيميشن
 
+  // عندما تتغير حالة isPopupOpen، نتحكم في ظهور/اختفاء الأنيميشن
+  useEffect(() => {
+    if (isPopupOpen) {
+      setShowPopup(true); // يظهر البوب-أب
+    } else {
+      // ننتظر مدة الأنيميشن قبل إزالة العنصر من الـDOM
+      const timer = setTimeout(() => setShowPopup(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isPopupOpen]);
   // إغلاق عند الضغط خارج القائمة
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -75,6 +89,23 @@ export default function UsersManagement() {
   }, []);
   return (
     <div className=" w-full p-1">
+      {showPopup && (
+        <div
+          onClick={() => setIsPopupOpen(false)}
+          className={`absolute inset-0 flex items-center justify-center bg-black/50 z-40 transition-opacity duration-200 ${
+            isPopupOpen ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={`bg-white rounded-lg shadow-lg z-50 transform transition-all duration-200 ${
+              isPopupOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+            }`}
+          >
+            <AddUserPopup onClose={() => setIsPopupOpen(false)} />
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div className="flex p-3 rounded-lg bg-white justify-between items-center mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.05)] ">
         <h1 className="text-lg font-bold text-gray-800 ">
@@ -82,6 +113,7 @@ export default function UsersManagement() {
         </h1>
         <button
           color="purple"
+          onClick={() => setIsPopupOpen(true)}
           className="flex items-center px-3 py-1.5  gap-2 cursor-pointer bg-blue-400 text-white rounded-lg  hover:bg-blue-500 text-sm  font-bold transition duration-100  "
         >
           <HiUserAdd className="text-lg" /> إضافة مستخدم
