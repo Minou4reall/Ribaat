@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import AddUserPopup from "../components/ui-component/AddUserPopup";
 import { Badge, Dropdown } from "flowbite-react";
 import { HiOutlinePencil, HiOutlineDotsVertical } from "react-icons/hi";
@@ -7,6 +8,7 @@ import { FaShieldAlt, FaCheckCircle } from "react-icons/fa";
 import { PiUsersThreeFill } from "react-icons/pi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdOutlineEdit } from "react-icons/md";
+
 import { FaEye } from "react-icons/fa6";
 import face4 from "../assets/face-4.jpg";
 import face2 from "../assets/face-2.jpeg";
@@ -90,21 +92,39 @@ export default function UsersManagement() {
   return (
     <div className=" w-full p-1">
       {showPopup && (
-        <div
-          onClick={() => setIsPopupOpen(false)}
-          className={`absolute inset-0 flex items-center justify-center bg-black/50 z-40 transition-opacity duration-200 ${
-            isPopupOpen ? "opacity-100" : "opacity-0"
-          }`}
-        >
+        <AnimatePresence mode="wait">
+          <motion.div
+            className="fixed inset-0 bg-black/30 z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.1 }}
+            onClick={() => setShowPopup(false)}
+          />
           <div
-            onClick={(e) => e.stopPropagation()}
-            className={`bg-white rounded-lg shadow-lg z-50 transform transition-all duration-200 ${
-              isPopupOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+            onClick={() => setIsPopupOpen(false)}
+            className={`absolute inset-0 flex items-center  justify-center bg-black/30 z-40 transition duration-200 ${
+              isPopupOpen ? "opacity-100" : "opacity-0"
             }`}
           >
-            <AddUserPopup onClose={() => setIsPopupOpen(false)} />
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={`bg-white rounded-lg shadow-lg z-50 transform transition-all duration-200 ${
+                isPopupOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+              }`}
+            >
+              {showPopup && (
+                <>
+                  {/* خلفية داكنة شفافة */}
+
+                  <AddUserPopup onClose={() => setShowPopup(false)} />
+                </>
+              )}
+
+              {/* <AddUserPopup onClose={() => setIsPopupOpen(false)} /> */}
+            </div>
           </div>
-        </div>
+        </AnimatePresence>
       )}
       {/* Header */}
       <div className="flex p-3 rounded-lg bg-white justify-between items-center mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.05)] ">

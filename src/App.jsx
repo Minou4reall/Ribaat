@@ -8,12 +8,12 @@ import UsersManagement from "./pages/usersManagment";
 function App() {
   return (
     <>
-      <div className=" flex  bg-gray-50" dir="rtl">
+      <div className="font-Cairo  flex bg-gray-50" dir="rtl">
 
         <Sidebar />
         
         <div className="content relative h-screen flex-1 overflow-y-auto ">
-          <UsersManagement/>
+          <UsersManagement />
           
         </div>
       </div>
